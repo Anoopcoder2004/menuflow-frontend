@@ -1,0 +1,19 @@
+<aside class="sidebar">
+  <ul class="menu">
+    <ng-container *ngIf="parentMenus$ | async as parents">
+      <li *ngFor="let menu of parents" class="menu-item">
+        {{ menu.name }}
+
+        <!-- Render child menus -->
+        <ul *ngIf="menus$ | async as allMenus; else loading" class="submenu">
+          <li *ngFor="let child of getChildren(menu.code, allMenus)">
+            {{ child.name }}
+          </li>
+        </ul>
+      </li>
+    </ng-container>
+  </ul>
+</aside>
+
+<ng-template #loading>Loading menus...</ng-template>
+
