@@ -8,7 +8,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  standalone:true
+  standalone:true,
+  imports:[CommonModule]
 })
 export class SidebarComponent implements OnInit {
   menus$!: Observable<Menu[]>;       // all menus
