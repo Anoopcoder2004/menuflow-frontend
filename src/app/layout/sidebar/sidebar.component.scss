@@ -1,34 +1,115 @@
+/* =========================
+   Sidebar Container
+========================= */
 .sidebar {
-  width: 250px;
-  background-color: #1f1f1f;
-  color: white;
+  width: 256px;
   height: 100vh;
-  padding: 10px;
+  padding: 16px 8px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  font-family: Roboto, sans-serif;
 }
 
-.menu {
+/* =========================
+   Menu List
+========================= */
+.menu-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* =========================
+   Parent Menu Item
+========================= */
 .menu-item {
-  padding: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
+  color: #2d2c2c;
+  font-size: 14px;
   font-weight: 600;
+  transition: background 0.2s ease;
 }
 
 .menu-item:hover {
-  background-color: #333;
+  background-color: #dbf8f1;
 }
 
+/* Active parent */
+.menu-item.active {
+  background-color: #01a982;
+  color: #ffffff;
+}
+
+/* =========================
+   Sub Menu
+========================= */
 .submenu {
   list-style: none;
-  padding-left: 15px;
-  margin-top: 5px;
+  padding-left: 18px;
+  margin-top: 6px;
 }
 
+/* Sub menu item */
 .submenu li {
-  padding: 5px 0;
-  font-weight: 400;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #37474f;
+  transition: background 0.2s ease;
+}
+
+.submenu li:hover {
+  background-color: #dbf8f1;
+}
+
+/* Active submenu */
+.submenu li.active {
+  background-color: #01a982;
+  color: #ffffff;
+}
+
+/* =========================
+   Arrow Icon
+========================= */
+.arrow {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.menu-item.active .arrow {
+  transform: rotate(90deg);
+}
+
+/* =========================
+   Footer / Version
+========================= */
+.version {
+  margin-top: auto;
+  text-align: center;
+  font-size: 12px;
+  padding: 6px;
+  background-color: #314047;
+  color: #ffffff;
+  border-radius: 6px;
+}
+.arrow {
+  font-size: 12px;
+  display: inline-block;
+  margin-left: 5px;
+  transition: transform 0.2s ease;
+}
+
+.arrow.rotated {
+  transform: rotate(90deg); /* arrow points right → down when clicked */
 }

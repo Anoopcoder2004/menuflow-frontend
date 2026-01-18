@@ -28,7 +28,9 @@ export class SidebarComponent implements OnInit {
     );
   }
 
-  getChildren(parentCode: string, menus: Menu[]): Menu[] {
-    return menus.filter(m => m.parentCode === parentCode);
-  }
+getChildren(parentCode: string, menus: Menu[] | null): Menu[] {
+  if (!menus) return [];
+  return menus.filter(m => m.parentCode === parentCode);
+}
+
 }

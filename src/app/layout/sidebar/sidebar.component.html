@@ -1,9 +1,13 @@
 <ul class="sidebar">
   <li *ngFor="let menu of parentMenus$ | async" class="menu-item">
-    {{ menu.menuName }}
+    <span class="menu-title" (click)="menu.showChildren = !menu.showChildren">
+      {{ menu.menuName }}
+      <span class="arrow" [class.rotated]="menu.showChildren">&#9654;</span>
+    </span>
 
-    <ul *ngIf="menus$ | async as menus">
-      <li *ngFor="let child of getChildren(menu.menuCode, menus)">
+    <!-- Submenu -->
+    <ul *ngIf="menu.showChildren" class="submenu">
+      <li *ngFor="let child of getChildren(menu.menuCode, menus$ | async)">
         {{ child.menuName }}
       </li>
     </ul>

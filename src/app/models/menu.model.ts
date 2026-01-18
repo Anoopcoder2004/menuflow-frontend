@@ -4,4 +4,5 @@ export interface Menu {
   menuName: string;
   parentCode: string | null;
   roles: string[];
+  showChildren?: boolean; // add this optional property
 }
