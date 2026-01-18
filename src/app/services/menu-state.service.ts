@@ -9,13 +9,20 @@ export class MenuStateService {
   constructor(private http: HttpClient) {}
 
   // Load menus from backend
-  loadMenus(): void {
-    this.http.get<Menu[]>('http://localhost:8080/api/menus')
-      .subscribe({
-        next: (data: Menu[]) => this.menus$.next(data),
-        error: (err: HttpErrorResponse) => console.error('Failed to load menus', err)
-      });
-  }
+loadMenus(): void {
+  console.log('Calling menu API...');
+  this.http.get<Menu[]>('http://localhost:8080/api/menus')
+    .subscribe({
+      next: (data) => {
+        console.log('Menus received from backend:', data);
+        this.menus$.next(data);
+      },
+      error: (err) => {
+        console.error('Menu API error', err);
+      }
+    });
+}
+
 
   // Get menus as Observable
   getMenus(): Observable<Menu[]> {

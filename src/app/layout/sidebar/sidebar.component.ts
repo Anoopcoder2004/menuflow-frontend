@@ -6,27 +6,29 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  standalone:true,
-  imports:[CommonModule]
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  menus$!: Observable<Menu[]>;       // all menus
-  parentMenus$!: Observable<Menu[]>; // only parents
+
+  menus$!: Observable<Menu[]>;
+  parentMenus$!: Observable<Menu[]>;
 
   constructor(private menuService: MenuStateService) {}
 
   ngOnInit(): void {
+    this.menuService.loadMenus(); // 🔴 REQUIRED
+
     this.menus$ = this.menuService.getMenus();
 
-    // filter parent menus
     this.parentMenus$ = this.menus$.pipe(
       map(menus => menus.filter(menu => !menu.parentCode))
     );
   }
 
-  getChildren(menuCode: string, allMenus: Menu[]): Menu[] {
-    return allMenus.filter(m => m.parentCode === menuCode);
+  getChildren(parentCode: string, menus: Menu[]): Menu[] {
+    return menus.filter(m => m.parentCode === parentCode);
   }
 }

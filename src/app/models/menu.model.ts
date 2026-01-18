@@ -1,6 +1,7 @@
 export interface Menu {
-  code: string;
-  name: string;
+  id: number;
+  menuCode: string;
+  menuName: string;
   parentCode: string | null;
   roles: string[];
 }
